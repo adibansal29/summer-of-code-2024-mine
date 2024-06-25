@@ -1,1 +1,0 @@
-cur.execute(''' create index inventory_sku_index on InventoryItem(Item_SKU)''')
