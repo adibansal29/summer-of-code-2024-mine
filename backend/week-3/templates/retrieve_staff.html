@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Product List</h2>
+    
+    <form method="GET" action="{{ url_for('retrieve_staff') }}">
+        <input type="text" name="search" value="{{ search_query }}" placeholder="Search by name">
+        <button type="submit">Search</button>
+    </form>
+    
+    <form method="GET" action="{{ url_for('retrieve_staff') }}">
+        <input type="hidden" name="search" value="{{ search_query }}">
+        <input type="hidden" name="page" value="{{ page }}">
+        <input type="hidden" name="per_page" value="{{ per_page }}">
+        <label for="sort_by">Sort by:</label>
+        <select name="sort_by" onchange="this.form.submit()">
+            <option value="s_ID" {% if sort_by == 's_ID' %}selected{% endif %}>ID</option>
+            <option value="s_name" {% if sort_by == 's_name' %}selected{% endif %}>Name</option>
+            <option value="s_isAdmin" {% if sort_by == 's_isAdmin' %}selected{% endif %}>Admin</option>
+            <option value="is_approved" {% if sort_by == 'is_approved' %}selected{% endif %}>Pseudo Admin</option>
+        </select>
+        <select name="sort_order" onchange="this.form.submit()">
+            <option value="asc" {% if sort_order == 'asc' %}selected{% endif %}>Ascending</option>
+            <option value="desc" {% if sort_order == 'desc' %}selected{% endif %}>Descending</option>
+        </select>
+    </form>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone No</th>
+                <th>Admin</th>
+                <th>Pseudo Admin</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for staff in staff_list %}
+            <tr>
+                <td>{{ staff[0] }}</td>
+                <td>{{ staff[1] }}</td>
+                <td>{{ staff[2] }}</td>
+                <td>{{ staff[4] }}</td>
+                <td>{{ staff[3] }}</td>
+                <td>{{ staff[5] }}</td>
+                <td>{{ staff[6] }}</td>
+                <td>
+                    <a href="{{ url_for('update_staff', s_ID=staff[0]) }}">Update</a>
+                    <form action="{{ url_for('delete_staff', s_ID=staff[0]) }}" method="post" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div class="pagination">
+        {% if page > 1 %}
+        <a href="{{ url_for('retrieve_staff', page=page-1, per_page=per_page, search=search_query, sort_by=sort_by, sort_order=sort_order) }}">&laquo; Previous</a>
+        {% endif %}
+        {% for p in range(1, (total_items // per_page) + 2) %}
+        <a href="{{ url_for('retrieve_staff', page=p, per_page=per_page, search=search_query, sort_by=sort_by, sort_order=sort_order) }}" {% if page == p %}class="active"{% endif %}>{{ p }}</a>
+        {% endfor %}
+        {% if page < (total_items // per_page) + 1 %}
+        <a href="{{ url_for('retrieve_staff', page=page+1, per_page=per_page, search=search_query, sort_by=sort_by, sort_order=sort_order) }}">Next &raquo;</a>
+        {% endif %}
+    </div>
+{% endblock %}
