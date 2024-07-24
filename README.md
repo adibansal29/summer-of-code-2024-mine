@@ -19,12 +19,16 @@ DevClub will also be giving attracting **rewards** to those people who participa
 
 - [ ] **[Week 3](app/week-3)** :
       Refactoring present codebase to use Firebase services like firebase Authentication,firestore and cloud storage.
+      
+- [ ] **[Week 4](app/week-4)** :
+      Implementing API calls, integrating a payment gateway, generating and managing invoices, updating sales data on Firestore, and integrating Firebase Analytics to track user interactions           and sales       data.Each task focuses on enhancing app functionality and ensuring robust, real-time data handling and analysis.  
 
 ### [Backend Development](backend)
 
 - [ ] **[Week 1](backend/week-1)** : Setting up the dev environment, initialise a Flask project, connect it to PostgreSQL, and create database models for inventory items and customers.
 - [ ] **[Week 2](backend/week-2)** : Create API endpoints, implement CRUD Operations and develop Product Management Interface.
 - [ ] **[Week 3](backend/week-3)** : Implement user management and authentication, including secure staff authentication, staff and customer CRUD operations, secure password handling, and transaction management with full CRUD functionality.
+- [ ] **[Week 4](backend/week-4)** : Invoice Generation, Azure Account Creation and Setting up Virtual machine.
 
 ### [Frontend Development](frontend)
 
