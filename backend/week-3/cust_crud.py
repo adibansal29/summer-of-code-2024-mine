@@ -3,19 +3,9 @@ import psycopg2
 from flask_login import LoginManager
 
 app = Flask(__name__)
-conn = psycopg2.connect("dbname=DSOC user=postgres password=Ab290805")
-cur = conn.cursor()
-
-login_manager = LoginManager()
-
-# cur.execute(''' alter table Staff add column is_approved boolean''')
-#cur.execute(''' alter table Staff add column s_password varchar(100)''')
 
 
-
-
-
-#Staff CRUD Operations
+#customer CRUD Operations
 app.secret_key = '12d'
 def db_connection():
     conn = psycopg2.connect("dbname=DSOC user=postgres password=Ab290805")
@@ -26,7 +16,7 @@ def hello():
     return redirect(url_for('retrieve_staff'))
 
 
-@app.route("/customer/create/", methods=['GET','POST'])
+@app.route("/staff/create/", methods=['GET','POST'])
 def create_staff():
     if request.method == 'POST':
         s_ID = request.form['s_ID']
