@@ -120,3 +120,4 @@ def delete_staff(s_ID):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
