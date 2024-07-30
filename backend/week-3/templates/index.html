@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome</h1>
+        <div class="row mt-4">
+            <div class="col text-center">
+                <a href="{{ url_for('retrieve_customer') }}" class="btn btn-primary btn-lg">Customer</a>
+            </div>
+            <div class="col text-center">
+                <a href="{{ url_for('retrieve_staff') }}" class="btn btn-secondary btn-lg">Staff</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

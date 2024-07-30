@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Management</title>
+    <title>Customer Management</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Staff Management</h1>
+            <h1>Customer Management</h1>
             <nav>
-                <a href="{{ url_for('retrieve_staff') }}">Home</a>
-                <a href="{{ url_for('create_staff') }}">Create Staff</a>
+                <a href="{{ url_for('hello') }}">Home</a>
+                <a href="{{ url_for('create_customer') }}">Create Customer</a>
             </nav>
         </header>
         {% with messages = get_flashed_messages(with_categories=true) %}

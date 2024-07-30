@@ -1,23 +1,17 @@
 {% extends "base1.html" %}
 
 {% block content %}
-    <h2>Create Staff</h2>
-    <form action="{{ url_for('create_staff') }}" method="post">
-        <label for="s_ID">ID:</label>
+    <h2>Create Customer</h2>
+    <form action="{{ url_for('create_customer') }}" method="post">
+        <label for="c_ID">ID:</label>
         <input type="text" name="s_ID" required>
-        <label for="s_name">Name:</label>
+        <label for="c_name">Name:</label>
         <input type="text" name="s_name">
-        <label for="s_email">Email:</label>
+        <label for="c_email">Email:</label>
         <input type="text" name="s_email">
-        <label for="s_contact">Phone No:</label>
+        <label for="c_contact">Phone No:</label>
         <input type="number" name="s_contact">
-        <label for="s_isAdmin">Admin:</label>
-        <input type="hidden" name="s_isAdmin" value="false">
-        <input type="checkbox" name="s_isAdmin">
-        <label for="is_approved">Pseudo Admin:</label>
-        <input type="hidden" name="is_approved" value="false">
-        <input type="checkbox" name="is_approved">
-        <label for="s_password">Password:</label>
+        <label for="c_password">Password:</label>
         <input type="text" name="s_password">
         <button type="submit">Create</button>
     </form>
