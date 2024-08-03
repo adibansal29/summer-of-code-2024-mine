@@ -5,14 +5,19 @@
     <form action="{{ url_for('update_customer', c_ID=customer[0]) }}" method="post">
         <label for="c_ID">ID:</label>
         <input type="text" name="c_ID" value="{{ customer[0] }}">
+        <br>
         <label for="c_name">Name:</label>
         <input type="text" name="c_name" value="{{ customer[1] }}">
+        <br>
         <label for="c_email">Email:</label>
         <input type="text" name="c_email" value="{{ customer[2] }}">
+        <br>
         <label for="c_contact">Phone No:</label>
         <input type="number" name="c_contact" value="{{ customer[3] }}">
+        <br>
         <label for="c_password">Password:</label>
         <input type="text" name="c_password" value="{{ customer[4] }}">
+        <br>
         <button type="submit">Update</button>
     </form>
 {% endblock %}

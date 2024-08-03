@@ -5,20 +5,31 @@
     <form action="{{ url_for('update_staff', s_ID=staff[0]) }}" method="post">
         <label for="s_ID">ID:</label>
         <input type="text" name="s_ID" value="{{ staff[0] }}">
+        <br>
         <label for="s_name">Name:</label>
         <input type="text" name="s_name" value="{{ staff[1] }}">
+        <br>
         <label for="s_email">Email:</label>
         <input type="text" name="s_email" value="{{ staff[2] }}">
+        <br>
         <label for="s_contact">Phone No:</label>
         <input type="number" name="s_contact" value="{{ staff[4] }}">
+        <br>
         <label for="s_isAdmin">Admin:</label>
-        <input type="hidden" name="s_isAdmin" value="false">
-        <input type="checkbox" name="s_isAdmin" value="true" {% if staff[3] %}checked{% endif %}>
+        <select name="s_isAdmin" required>
+            <option value="true" {% if staff[3] %}selected{% endif %}>Yes</option>
+            <option value="false" {% if not staff[3] %}selected{% endif %}>No</option>
+        </select>
+        <br>
         <label for="is_approved">Pseudo Admin:</label>
-        <input type="hidden" name="is_approved" value="false">
-        <input type="checkbox" name="is_approved" value="true" {% if staff[5] %}checked{% endif %}>
+        <select name="is_approved" required>
+            <option value="true" {% if staff[5] %}selected{% endif %}>Yes</option>
+            <option value="false" {% if not staff[5] %}selected{% endif %}>No</option>
+        </select>
+        <br>
         <label for="s_password">Password:</label>
         <input type="text" name="s_password" value="{{ staff[6] }}">
+        <br>
         <button type="submit">Update</button>
     </form>
 {% endblock %}

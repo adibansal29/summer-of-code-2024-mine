@@ -48,6 +48,9 @@
                     <form action="{{ url_for('delete_customer', c_ID=customer[0]) }}" method="post" style="display:inline;">
                         <button type="submit">Delete</button>
                     </form>
+                    <form action="{{ url_for('retrieve_customer_transaction', c_ID=customer[0]) }}" method="get" style="display:inline;">
+                        <button type="submit">Transaction</button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}

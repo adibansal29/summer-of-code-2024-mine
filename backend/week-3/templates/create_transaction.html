@@ -1,0 +1,23 @@
+{% extends "base_transaction.html" %}
+
+{% block content %}
+    <h2>New Transaction</h2>
+    <form action="{{ url_for('create_transaction') }}" method="post">
+        <label for="t_ID">ID:</label>
+        <input type="text" name="t_ID" required>
+        <br>
+        <label for="c_ID">Customer ID:</label>
+        <input type="text" name="c_ID">
+        <br>
+        <label for="t_date">Date:</label>
+        <input type="text" name="t_date">
+        <br>
+        <label for="t_amount">Amount:</label>
+        <input type="number" name="t_amount">
+        <br>
+        <label for="t_category">Category:</label>
+        <input type="text" name="t_category">
+        <br>
+        <button type="submit">Create</button>
+    </form>
+{% endblock %}

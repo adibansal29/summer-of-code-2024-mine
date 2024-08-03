@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Management</title>
+    <title>Transactions</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Customer Management</h1>
+            <h1>Transactions</h1>
             <nav>
                 <a href="{{ url_for('index') }}">Home</a>
-                <a href="{{ url_for('create_customer') }}">Create Customer</a>
+                <a href="{{ url_for('create_transaction') }}">New Transaction</a>
                 {% if current_user.is_authenticated %}
                     <a href="{{ url_for('logout') }}" class="logout">Logout</a>
                 {% endif %}

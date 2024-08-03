@@ -1,0 +1,26 @@
+{% extends "base_transaction.html" %}
+
+{% block content %}
+    <h2>Update Transaction</h2>
+    <form action="{{ url_for('update_transaction', t_ID=transaction[0]) }}" method="post">
+        <label for="t_ID">ID:</label>
+        <input type="text" name="t_ID" value="{{ transaction[0] }}">
+        <br>
+        <label for="c_ID">Customer ID:</label>
+        <input type="text" name="c_ID" value="{{ transaction[1] }}">
+        <br>
+        <label for="s_ID">Staff ID:</label>
+        <input type="text" name="s_ID" value="{{ transaction[2] }}">
+        <br>
+        <label for="t_date">Date:</label>
+        <input type="text" name="t_date" value="{{ transaction[3] }}">
+        <br>
+        <label for="t_amount">Amount:</label>
+        <input type="number" name="t_amount" value="{{ transaction[4] }}">
+        <br>
+        <label for="t_category">Category:</label>
+        <input type="text" name="t_category" value="{{ transaction[5] }}">
+        <br>
+        <button type="submit">Update</button>
+    </form>
+{% endblock %}

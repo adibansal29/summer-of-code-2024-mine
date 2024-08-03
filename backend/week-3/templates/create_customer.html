@@ -4,15 +4,20 @@
     <h2>Create Customer</h2>
     <form action="{{ url_for('create_customer') }}" method="post">
         <label for="c_ID">ID:</label>
-        <input type="text" name="s_ID" required>
+        <input type="text" name="c_ID" required>
+        <br>
         <label for="c_name">Name:</label>
-        <input type="text" name="s_name">
+        <input type="text" name="c_name">
+        <br>
         <label for="c_email">Email:</label>
-        <input type="text" name="s_email">
+        <input type="text" name="c_email">
+        <br>
         <label for="c_contact">Phone No:</label>
-        <input type="number" name="s_contact">
+        <input type="number" name="c_contact">
+        <br>
         <label for="c_password">Password:</label>
-        <input type="text" name="s_password">
+        <input type="text" name="c_password">
+        <br>
         <button type="submit">Create</button>
     </form>
 {% endblock %}
