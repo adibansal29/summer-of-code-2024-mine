@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for, f
 import psycopg2
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from functools import wraps
+import bcrypt
 
 app = Flask(__name__)
 
@@ -77,7 +78,8 @@ def hello():
 def login():
     if request.method == 'POST':
         email = request.form['email']
-        password = request.form['password']
+        # password = request.form['password']
+        password = request.form['password'].encode('utf-8')
         role = request.form['role']
         
         conn = db_connection()
@@ -86,7 +88,8 @@ def login():
         if role == 'staff':
             cur.execute("SELECT * FROM Staff WHERE s_email = %s", (email,))
             staff = cur.fetchone()
-            if staff and staff[6] == password:
+            # if staff and staff[6] == password:
+            if staff and bcrypt.checkpw(password, staff[6].encode('utf-8')):
                 user = User(id=staff[0], email=staff[2], password=staff[6], role='staff', is_admin=staff[3], pseudo_admin=staff[5])
                 login_user(user)
                 flash('Logged in successfully as Staff.', 'success')
@@ -95,7 +98,8 @@ def login():
         elif role == 'customer':
             cur.execute("SELECT * FROM Customer WHERE c_email = %s", (email,))
             customer = cur.fetchone()
-            if customer and customer[4] == password:
+            # if customer and customer[4] == password:
+            if customer and bcrypt.checkpw(password, customer[4].encode('utf-8')):
                 user = User(id=customer[0], email=customer[2], password=customer[4], role='customer')
                 login_user(user)
                 flash('Logged in successfully as Customer.', 'success')
@@ -137,11 +141,12 @@ def create_staff():
         s_contact = request.form['s_contact']
         s_isAdmin = request.form['s_isAdmin']
         is_approved = request.form['is_approved']
-        s_password = request.form['s_password']
+        s_password = request.form['s_password'].encode('utf-8')
+        hashed_password = bcrypt.hashpw(s_password, bcrypt.gensalt()).decode('utf-8')
         conn = db_connection()
         cur = conn.cursor()
         cur.execute(''' insert into Staff values (%s, %s, %s, %s, %s, %s, %s)'''
-                    ,(s_ID, s_name, s_email, s_isAdmin, s_contact, is_approved, s_password,))
+                    ,(s_ID, s_name, s_email, s_isAdmin, s_contact, is_approved, hashed_password,))
         conn.commit()
         cur.close()
         conn.close()
@@ -200,10 +205,15 @@ def update_staff(s_ID):
         s_isAdmin = request.form['s_isAdmin']
         is_approved = request.form['is_approved']
         s_password = request.form['s_password']
+        if s_password:
+            s_password = s_password.encode('utf-8')
+            hashed_password = bcrypt.hashpw(s_password, bcrypt.gensalt()).decode('utf-8')
+        else:
+            hashed_password = staff[6]
         conn = db_connection()
         cur = conn.cursor()
         cur.execute('''update Staff set s_ID = %s, s_name = %s, s_email = %s, s_contact = %s, s_isAdmin = %s, is_approved = %s, s_password = %s where s_ID = %s''',
-                    (s_ID2, s_name, s_email, s_contact, s_isAdmin, is_approved, s_password, s_ID,))
+                    (s_ID2, s_name, s_email, s_contact, s_isAdmin, is_approved, hashed_password, s_ID,))
         conn.commit()
         cur.close()
         conn.close()
@@ -237,11 +247,12 @@ def create_customer():
         c_name = request.form['c_name']
         c_email = request.form['c_email']
         c_contact = request.form['c_contact']
-        c_password = request.form['c_password']
+        c_password = request.form['c_password'].encode('utf-8')
+        hashed_password = bcrypt.hashpw(c_password, bcrypt.gensalt()).decode('utf-8')
         conn = db_connection()
         cur = conn.cursor()
         cur.execute(''' insert into Customer values (%s, %s, %s, %s, %s)'''
-                    ,(c_ID, c_name, c_email, c_contact, c_password,))
+                    ,(c_ID, c_name, c_email, c_contact, hashed_password,))
         conn.commit()
         cur.close()
         conn.close()
@@ -303,10 +314,15 @@ def update_customer(c_ID):
         c_email = request.form['c_email']
         c_contact = request.form['c_contact']
         c_password = request.form['c_password']
+        if c_password:
+            c_password = c_password.encode('utf-8')
+            hashed_password = bcrypt.hashpw(c_password, bcrypt.gensalt()).decode('utf-8')
+        else:
+            hashed_password = customer[4]
         conn = db_connection()
         cur = conn.cursor()
         cur.execute('''update Customer set c_ID = %s, c_name = %s, c_email = %s, c_contact = %s, c_password = %s where c_ID = %s''',
-                    (c_ID2, c_name, c_email, c_contact, c_password, c_ID,))
+                    (c_ID2, c_name, c_email, c_contact, hashed_password, c_ID,))
         conn.commit()
         cur.close()
         conn.close()

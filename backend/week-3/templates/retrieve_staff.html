@@ -34,7 +34,6 @@
                 <th>Phone No</th>
                 <th>Admin</th>
                 <th>Pseudo Admin</th>
-                <th>Password</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -47,7 +46,6 @@
                 <td>{{ staff[4] }}</td>
                 <td>{{ staff[3] }}</td>
                 <td>{{ staff[5] }}</td>
-                <td>{{ staff[6] }}</td>
                 <td>
                     <a href="{{ url_for('update_staff', s_ID=staff[0]) }}">Update</a>
                     <form action="{{ url_for('delete_staff', s_ID=staff[0]) }}" method="post" style="display:inline;">
