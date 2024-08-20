@@ -48,6 +48,7 @@ DevClub will also be giving attracting **rewards** to those people who participa
 - [ ] **[Week 2](machine-learning/week-2)** : Learn how to build a time-series ML model to forecast sales and inventory for a store! Use time series prediction methods such as ARIMA, LSTM and Prophet.
 - [ ] **[Week 3](machine-learning/week-3)** : Learn how to build a clustering model to automatically split your customer base into segments! Then, build a recommmendations engine to give personalised product recommendations.
 - [ ] **[Week 4](machine-learning/week-4)** : Learn how to build dynamic pricing models and demand forecasting techniques for our Point of Sale (PoS) application.
+- [ ] **[Week 5](machine-learning/week-4)** : Learn how to build an all-powerful AI agentic chatbot that integrates multiple capabilities, including real-time web scraping, sentiment analysis, and a reasoning and planning system using LangChain.
 
 ## How to Participate
 
